@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mariana Mançan</title>
+<meta name="description" content="Mariana Frederico Mançan, desenvolvedora. Trajetória, experiências e estudos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: blueprint-style single column; hero pairs the name with a hexagonal (ports & adapters) diagram */
+:root{
+  --bg:#f4f6f9; --surface:#ffffff; --ink:#131c26; --muted:#56626f; --line:#d9dfe7;
+  --accent:#b8235a; --accent-soft:#f6e3ea; --grid:rgba(19,28,38,.045);
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e131a; --surface:#151c25; --ink:#e8edf3; --muted:#9aa6b4; --line:#26313d;
+  --accent:#ff7aa6; --accent-soft:#3a1d29; --grid:rgba(232,237,243,.04); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e131a; --surface:#151c25; --ink:#e8edf3; --muted:#9aa6b4; --line:#26313d;
+  --accent:#ff7aa6; --accent-soft:#3a1d29; --grid:rgba(232,237,243,.04); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--body);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:32px 32px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* nav */
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.mono{font-family:var(--mono)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 15px var(--display)}
+.logo svg{width:28px;height:28px}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px}
+.nav ul a{text-decoration:none;color:var(--muted)}
+.nav ul a:hover{color:var(--accent)}
+@media (max-width:720px){.nav ul{display:none}}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:72px 64px}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(2.6rem,6.4vw,4.6rem)/1.02 var(--display);letter-spacing:-.03em;margin:14px 0 18px;text-wrap:balance}
+h1 span{color:var(--accent)}
+.role{font:500 1.15rem/1.4 var(--body);margin:0 0 18px}
+.lede{color:var(--muted);max-width:56ch;margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font:600 14px var(--body);text-decoration:none;border:1.5px solid var(--ink);transition:transform .15s,background .15s,color .15s}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost:hover{background:var(--ink);color:var(--bg)}
+.btn svg{width:16px;height:16px}
+.facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:36px;padding-top:24px;border-top:1px dashed var(--line)}
+.facts div{display:flex;flex-direction:column}
+.facts b{font:800 1.8rem/1 var(--display);font-variant-numeric:tabular-nums}
+.facts small{color:var(--muted);font-size:13px;margin-top:6px}
+.path{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 24px 8px}
+.path-head{font-size:12px;color:var(--accent);margin-bottom:16px}
+.path ol{list-style:none;margin:0;padding:0;position:relative}
+.path ol::before{content:"";position:absolute;left:44px;top:8px;bottom:24px;width:1px;background:var(--line)}
+.path li{display:grid;grid-template-columns:40px 1fr;gap:22px;padding-bottom:18px;position:relative}
+.path li::after{content:"";position:absolute;left:40px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--surface);border:2px solid var(--muted)}
+.path li.now-item::after{background:var(--accent);border-color:var(--accent)}
+.path .yr{font:500 13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;padding-top:1px}
+.path b{display:block;font:600 1rem/1.3 var(--display)}
+.path small{color:var(--muted);font-size:13px;line-height:1.4}
+.hex{min-width:0}
+.hex svg{width:100%;max-width:420px;height:auto;display:block;margin:0 auto}
+.hex figcaption{text-align:center;font:400 12px var(--mono);color:var(--muted);margin-top:8px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:48px}}
+
+/* sections */
+section{padding-block:72px;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap}
+h2{font:800 clamp(1.8rem,3.6vw,2.5rem)/1.1 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sec-head .mono{color:var(--accent);font-size:13px}
+
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.about p{margin:0 0 14px;max-width:62ch}
+.about .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.about h3{font:600 1.05rem var(--display);margin:0 0 12px}
+.about ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.about li{display:flex;gap:10px;align-items:flex-start}
+.about li::before{content:"";flex:none;width:9px;height:9px;margin-top:8px;background:var(--accent);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+@media (max-width:760px){.about{grid-template-columns:1fr}}
+
+/* experience timeline */
+.timeline{display:grid;gap:0}
+.job{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:28px 0;border-bottom:1px dashed var(--line)}
+.job:first-child{padding-top:0}
+.job:last-child{border-bottom:0}
+.when{font:500 13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.when .now{display:inline-block;margin-top:8px;padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.job h3{font:700 1.4rem/1.2 var(--display);margin:0}
+.job .title{color:var(--accent);font-weight:500;margin:4px 0 14px}
+.job ul{margin:0;padding-left:18px;color:var(--ink);display:grid;gap:6px}
+.job ul li::marker{color:var(--accent)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tag{font:500 12px var(--mono);padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--muted)}
+@media (max-width:720px){.job{grid-template-columns:1fr;gap:10px}}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;min-width:0}
+.skill h3{font:600 .8rem var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin:0 0 14px}
+.skill .tags{margin:0}
+.skill .tag{color:var(--ink);background:var(--bg)}
+@media (max-width:900px){.skills{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.skills{grid-template-columns:1fr}}
+
+/* highlights */
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.case{border-top:3px solid var(--ink);padding-top:18px}
+.case .mono{font-size:12px;color:var(--muted)}
+.case h3{font:700 1.25rem/1.25 var(--display);margin:8px 0 10px}
+.case p{margin:0;color:var(--muted)}
+@media (max-width:820px){.cases{grid-template-columns:1fr}}
+
+/* repos */
+.repos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.repo{display:flex;flex-direction:column;gap:6px;padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none;transition:border-color .15s,transform .15s}
+.repo:hover{border-color:var(--accent);transform:translateY(-2px)}
+.repo b{font:500 14px var(--mono);overflow-wrap:anywhere}
+.repo span{color:var(--muted);font-size:14px}
+.repo i{font:400 12px var(--mono);font-style:normal;color:var(--accent);margin-top:auto}
+@media (max-width:820px){.repos{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.repos{grid-template-columns:1fr}}
+.sub{font:600 1.1rem var(--display);margin:56px 0 0;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sub a{font:500 14px var(--body);color:var(--accent)}
+
+.repo .tags{margin-top:auto;padding-top:8px}
+.repo .tag{background:var(--bg);font-size:11px;padding:3px 8px}
+.repos.two{grid-template-columns:repeat(2,1fr)}
+.sub.first{margin-top:0}
+.repos + .sub{margin-top:40px}
+.repos{margin-top:16px}
+.more{margin:28px 0 0}.more a{color:var(--accent);font-weight:500}
+@media (max-width:820px){.repos.two{grid-template-columns:1fr}}
+/* education */
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.edu div{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.edu h3{font:700 1.15rem/1.3 var(--display);margin:6px 0 4px}
+.edu p{margin:0;color:var(--muted)}
+@media (max-width:640px){.edu{grid-template-columns:1fr}}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-top:0}
+.contact h2{font-size:clamp(2rem,5vw,3.4rem);max-width:16ch}
+.contact h2 span{color:var(--accent)}
+.contact p{color:color-mix(in srgb,var(--bg) 72%,var(--ink));max-width:52ch}
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+.link{display:flex;flex-direction:column;gap:4px;padding:18px;border:1px solid color-mix(in srgb,var(--bg) 22%,var(--ink));border-radius:12px;text-decoration:none;min-width:0}
+.link:hover{border-color:var(--accent)}
+.link small{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.link span{overflow-wrap:anywhere;font-weight:500}
+.copy{align-self:flex-start;margin-top:6px;background:none;border:1px solid color-mix(in srgb,var(--bg) 30%,var(--ink));color:inherit;border-radius:6px;font:500 12px var(--mono);padding:4px 10px;cursor:pointer}
+.copy:hover{border-color:var(--accent);color:var(--accent)}
+@media (max-width:720px){.links{grid-template-columns:1fr}}
+footer{background:var(--ink);color:color-mix(in srgb,var(--bg) 55%,var(--ink));font:400 12px var(--mono)}
+footer .wrap{padding-block:24px;border-top:1px solid color-mix(in srgb,var(--bg) 14%,var(--ink));display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* motion */
+@keyframes rise{from{opacity:.0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero .intro > *{animation:rise .6s ease both}
+.hero .intro > *:nth-child(2){animation-delay:.06s}.hero .intro > *:nth-child(3){animation-delay:.12s}
+.hero .intro > *:nth-child(4){animation-delay:.18s}.hero .intro > *:nth-child(5){animation-delay:.24s}
+.hex .port{transition:fill .2s}
+.hex g.adapter:hover .port{fill:var(--accent)}
+@keyframes flow{to{stroke-dashoffset:-20}}
+.hex .wire{stroke-dasharray:4 6;animation:flow 1.6s linear infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Início">
+      <svg viewBox="0 0 28 28" aria-hidden="true"><polygon points="7,2 21,2 27,14 21,26 7,26 1,14" fill="var(--ink)"/><text x="14" y="18.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="var(--bg)">MM</text></svg>
+      Mariana Mançan
+    </a>
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#trabalhos">Aprendizado</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow">Desenvolvedora · Java · Sempre aprendendo</div>
+        <h1>Mariana<br>Frederico <span>Mançan</span></h1>
+        <p class="role">Desenvolvedora</p>
+        <p class="lede">Gosto de entender como as coisas funcionam por dentro. Comecei com C e Android, passei por full stack e hoje trabalho principalmente com Java no backend, sempre estudando algo novo pelo caminho.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contato">Entrar em contato</a>
+          <a class="btn ghost" href="https://github.com/MarianaMancan" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            GitHub
+          </a>
+        </div>
+        <div class="facts">
+          <div><b>4+</b><small>anos com Java e Spring</small></div>
+          <div><b>3</b><small>empresas</small></div>
+          <div><b>EN</b><small>inglês avançado</small></div>
+        </div>
+      </div>
+
+      <aside class="path" aria-label="Minha trajetória">
+        <div class="path-head mono">// trajetória</div>
+        <ol>
+          <li><span class="yr">2021</span><div><b>Fatec Ourinhos</b><small>Início em Análise e Desenvolvimento de Sistemas</small></div></li>
+          <li><span class="yr">2022</span><div><b>KZ Tecnologia</b><small>Primeiro emprego: full stack, Android e C</small></div></li>
+          <li><span class="yr">2023</span><div><b>Autbank</b><small>Java, sistemas legados e banco de dados</small></div></li>
+          <li><span class="yr">2024</span><div><b>CI&amp;T</b><small>Microsserviços, Java 21 e Azure</small></div></li>
+          <li class="now-item"><span class="yr">2025</span><div><b>Pós em IA · UTFPR</b><small>Estudando Inteligência Artificial</small></div></li>
+        </ol>
+      </aside>
+    </div>
+  </div>
+
+  <section id="sobre">
+    <div class="wrap">
+      <div class="sec-head"><h2>Sobre mim</h2><span class="mono">// quem sou</span></div>
+      <div class="about">
+        <div>
+          <p>Sou desenvolvedora há mais de 4 anos, formada em Análise e Desenvolvimento de Sistemas pela Fatec Ourinhos. O que mais me move na profissão é aprender: cada projeto novo é uma chance de entender uma tecnologia, um domínio ou um jeito diferente de resolver problemas.</p>
+          <p>Minha trajetória passou por muitas áreas. Já desenvolvi aplicativos Android, sistemas full stack com Angular, ferramentas em C e C#, sistemas legados em Java e, mais recentemente, microsserviços em Java 21 com Docker e Azure.</p>
+          <p>Hoje estou na CI&amp;T, onde já fiz parte de uma equipe internacional, trabalhando em inglês, e fui tutora de estagiários, uma experiência que me ensinou muito. Em paralelo, faço pós-graduação em Inteligência Artificial na UTFPR.</p>
+        </div>
+        <div class="card">
+          <h3>Um pouco de mim</h3>
+          <ul>
+            <li>Gosto de estudar e testar tecnologias diferentes</li>
+            <li>Aprendo melhor colocando a mão no código</li>
+            <li>Ensinar o que sei também é um jeito de aprender</li>
+            <li>Gosto de trabalhar em equipe e trocar conhecimento</li>
+            <li>Inglês avançado, com experiência em equipe internacional</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiencia">
+    <div class="wrap">
+      <div class="sec-head"><h2>Experiência</h2><span class="mono">// onde trabalhei</span></div>
+      <div class="timeline">
+        <article class="job">
+          <div class="when">set/2024 — atual<br><span class="now">Atual</span></div>
+          <div>
+            <h3>CI&amp;T</h3>
+            <p class="title">Desenvolvedora Backend</p>
+            <ul>
+              <li>Migração de sistemas legados para microsserviços com Arquitetura Hexagonal (Ports and Adapters), com foco em desacoplamento e testabilidade.</li>
+              <li>Desenvolvimento de serviços backend em Java 21, Spring Boot e Docker, integrados ao ecossistema Azure.</li>
+              <li>Atuação em equipe internacional, com comunicação em inglês em cerimônias ágeis e definições técnicas.</li>
+              <li>Atuação como tutora técnica de estagiários em Spring e microsserviços.</li>
+            </ul>
+            <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot</span><span class="tag">Docker</span><span class="tag">Azure</span><span class="tag">Hexagonal</span></div>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when">jan/2023 — ago/2024</div>
+          <div>
+            <h3>Autbank Projetos e Consultoria</h3>
+            <p class="title">Desenvolvedora Java</p>
+            <ul>
+              <li>Desenvolvimento e evolução de sistemas legados em Java, com foco em estabilidade e modularidade.</li>
+              <li>Modernização por meio da decomposição de arquivos WAR e refatoração de componentes.</li>
+              <li>Otimização de consultas SQL e implementação de particionamento de dados para melhorar a performance.</li>
+              <li>Aplicação de padrões de projeto na integração com serviços web e bancos relacionais.</li>
+            </ul>
+            <div class="tags"><span class="tag">Java</span><span class="tag">SQL Server</span><span class="tag">Design Patterns</span><span class="tag">Legado</span></div>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when">jun/2022 — dez/2022</div>
+          <div>
+            <h3>KZ Tecnologia</h3>
+            <p class="title">Desenvolvedora Full Stack</p>
+            <ul>
+              <li>Sistemas de gestão full stack com Spring Boot (Security) e Angular/TypeScript.</li>
+              <li>Aplicativos Android em Java.</li>
+              <li>Ferramentas para manipulação de microprocessadores em C, C# e Windows Forms.</li>
+            </ul>
+            <div class="tags"><span class="tag">Spring Security</span><span class="tag">Angular</span><span class="tag">Android</span><span class="tag">C#</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="wrap">
+      <div class="sec-head"><h2>Stack</h2><span class="mono">// ferramentas do dia a dia</span></div>
+      <div class="skills">
+        <div class="skill"><h3>Backend</h3><div class="tags"><span class="tag">Java 8 · 11 · 17 · 21</span><span class="tag">Spring Boot</span><span class="tag">Spring Security</span><span class="tag">Spring Data</span><span class="tag">Spring Cloud</span><span class="tag">C#</span><span class="tag">.NET</span></div></div>
+        <div class="skill"><h3>Arquitetura</h3><div class="tags"><span class="tag">Microsserviços</span><span class="tag">Hexagonal</span><span class="tag">Design Patterns</span><span class="tag">Clean Code</span><span class="tag">Modernização de legado</span></div></div>
+        <div class="skill"><h3>Cloud &amp; DevOps</h3><div class="tags"><span class="tag">Azure</span><span class="tag">Azure DevOps</span><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Git</span></div></div>
+        <div class="skill"><h3>Dados</h3><div class="tags"><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Tuning de SQL</span><span class="tag">Particionamento</span></div></div>
+        <div class="skill"><h3>Mensageria</h3><div class="tags"><span class="tag">Kafka</span><span class="tag">RabbitMQ</span></div></div>
+        <div class="skill"><h3>Front-end &amp; Mobile</h3><div class="tags"><span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Vue.js</span><span class="tag">Node.js</span><span class="tag">Android</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="wrap">
+      <div class="sec-head"><h2>Projetos</h2><span class="mono">// do meu GitHub</span></div>
+      <h3 class="sub first">Backend</h3>
+      <div class="repos two">
+        <a class="repo" href="https://github.com/MarianaMancan/springcloud-microservices-lab" target="_blank" rel="noopener"><b>springcloud-microservices-lab</b><span>Sistema de RH com vários microsserviços: Config Server, Eureka para descoberta, Zuul como API Gateway, autenticação OAuth2 com JWT e comunicação via OpenFeign.</span><div class="tags"><span class="tag">Spring Cloud</span><span class="tag">Eureka</span><span class="tag">JWT</span><span class="tag">OpenFeign</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/RabbitOrder" target="_blank" rel="noopener"><b>RabbitOrder</b><span>Microsserviço de pedidos que consome mensagens de uma fila RabbitMQ, grava no MongoDB e expõe os dados por uma API REST.</span><div class="tags"><span class="tag">Java 21</span><span class="tag">RabbitMQ</span><span class="tag">MongoDB</span><span class="tag">Docker</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/MicroServicoSpringBootEmail" target="_blank" rel="noopener"><b>MicroServicoSpringBootEmail</b><span>Dois microsserviços que conversam por mensageria: o de usuários publica um evento no cadastro e o de e-mail consome e envia a mensagem.</span><div class="tags"><span class="tag">RabbitMQ</span><span class="tag">Spring Mail</span><span class="tag">JPA</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/picpaysimplificado" target="_blank" rel="noopener"><b>picpaysimplificado</b><span>API de transferências entre usuários e lojistas, com consulta a um autorizador externo, envio de notificação e testes unitários com Mockito.</span><div class="tags"><span class="tag">Spring Boot</span><span class="tag">JPA</span><span class="tag">Mockito</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/MicroserviceSpringKafkaProducerConsumer" target="_blank" rel="noopener"><b>MicroserviceSpringKafkaProducerConsumer</b><span>Producer e consumer em serviços separados, trocando mensagens por tópicos do Kafka.</span><div class="tags"><span class="tag">Spring Kafka</span><span class="tag">Microsserviços</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/SpringKafka" target="_blank" rel="noopener"><b>SpringKafka</b><span>Ambiente de streaming com Kafka e Zookeeper em Docker Compose e uma aplicação Spring que produz e consome eventos.</span><div class="tags"><span class="tag">Kafka</span><span class="tag">Docker Compose</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/springboot-eks" target="_blank" rel="noopener"><b>springboot-eks</b><span>Passo a passo para empacotar uma aplicação Spring Boot em Docker, enviar ao ECR e rodar no Kubernetes da AWS (EKS).</span><div class="tags"><span class="tag">AWS EKS</span><span class="tag">ECR</span><span class="tag">Docker</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/parking_control_spring_boot" target="_blank" rel="noopener"><b>parking_control_spring_boot</b><span>API REST de controle de vagas de estacionamento, com validação de dados e Spring Security.</span><div class="tags"><span class="tag">Spring Security</span><span class="tag">Validation</span><span class="tag">JPA</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/usingS3" target="_blank" rel="noopener"><b>usingS3</b><span>Integração de uma API Spring Boot com o Amazon S3 para armazenamento de arquivos.</span><div class="tags"><span class="tag">AWS S3</span><span class="tag">Spring Cloud AWS</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/BuscaEnderecoApiSpringBoot" target="_blank" rel="noopener"><b>BuscaEnderecoApiSpringBoot</b><span>API de consulta de endereços por CEP usando OpenFeign para chamar um serviço externo.</span><div class="tags"><span class="tag">OpenFeign</span><span class="tag">Java 17</span></div></a>
+      </div>
+      <h3 class="sub">Full stack e outros</h3>
+      <div class="repos two">
+        <a class="repo" href="https://github.com/MarianaMancan/Game" target="_blank" rel="noopener"><b>Aventura de JP</b><span>Jogo de plataforma no navegador com 10 fases, suporte a controle e celular, e ranking salvo por uma API em Spring Boot.</span><div class="tags"><span class="tag">Spring Boot</span><span class="tag">H2</span><span class="tag">JavaScript</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/Cadastro-de-usuarioFullStack" target="_blank" rel="noopener"><b>Cadastro de usuários</b><span>Aplicação full stack para cadastrar usuários e endereços, com validação de CEP pela API ViaCEP.</span><div class="tags"><span class="tag">Angular 17</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/CardapioVirtualSpringAndReact" target="_blank" rel="noopener"><b>Cardápio virtual</b><span>Cardápio de restaurante com API em Spring Boot e interface em React.</span><div class="tags"><span class="tag">Spring Boot</span><span class="tag">React</span></div></a>
+        <a class="repo" href="https://github.com/MarianaMancan/P-s-em-inteligencia-artificial" target="_blank" rel="noopener"><b>Pós em IA</b><span>Exercícios e atividades da pós-graduação em Inteligência Artificial.</span><div class="tags"><span class="tag">Python</span></div></a>
+      </div>
+      <p class="more"><a href="https://github.com/MarianaMancan?tab=repositories" target="_blank" rel="noopener">Ver todos os repositórios no GitHub →</a></p>
+    </div>
+  </section>
+
+  <section id="trabalhos">
+    <div class="wrap">
+      <div class="sec-head"><h2>Sempre aprendendo</h2><span class="mono">// estudos e projetos pessoais</span></div>
+      <div class="cases">
+        <article class="case">
+          <span class="mono">Agora</span>
+          <h3>Inteligência Artificial</h3>
+          <p>Pós-graduação na UTFPR, estudando os fundamentos de IA e como aplicar esses conceitos no desenvolvimento de software.</p>
+        </article>
+        <article class="case">
+          <span class="mono">No trabalho</span>
+          <h3>Arquitetura e nuvem</h3>
+          <p>Aprendendo na prática sobre microsserviços, Arquitetura Hexagonal, Docker e Azure.</p>
+        </article>
+        <article class="case">
+          <span class="mono">Por curiosidade</span>
+          <h3>Muitas linguagens</h3>
+          <p>Java, C#, C, Python, JavaScript e TypeScript. Gosto de experimentar linguagens e frameworks diferentes para ampliar meu repertório.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="formacao">
+    <div class="wrap">
+      <div class="sec-head"><h2>Formação</h2><span class="mono">// estudos</span></div>
+      <div class="edu">
+        <div><span class="mono" style="font-size:12px;color:var(--accent)">2025 — em andamento</span><h3>Pós-graduação em Inteligência Artificial</h3><p>UTFPR</p></div>
+        <div><span class="mono" style="font-size:12px;color:var(--accent)">2021 — 2024</span><h3>Tecnologia em Análise e Desenvolvimento de Sistemas</h3><p>Fatec Ourinhos</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <div class="wrap">
+      <div class="sec-head"><span class="mono">// contato</span></div>
+      <h2>Vamos construir algo <span>juntos?</span></h2>
+      <p>Estou sempre aberta a conversar sobre novas oportunidades, projetos e troca de conhecimento.</p>
+      <div class="links">
+        <div class="link">
+          <small>E-mail</small>
+          <span id="email">marianamancan@gmail.com</span>
+          <button class="copy" id="copy-email" type="button">Copiar</button>
+        </div>
+        <a class="link" href="https://www.linkedin.com/in/mariana-frederico-mancan/" target="_blank" rel="noopener"><small>LinkedIn</small><span>in/mariana-frederico-mancan</span></a>
+        <a class="link" href="https://github.com/MarianaMancan" target="_blank" rel="noopener"><small>GitHub</small><span>github.com/MarianaMancan</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Mariana Frederico Mançan</span><span>Bernardino de Campos · SP · Brasil</span></div>
+</footer>
+
+<script>
+document.getElementById('copy-email').addEventListener('click', function(){
+  var btn=this, text=document.getElementById('email').textContent;
+  function done(){btn.textContent='Copiado';setTimeout(function(){btn.textContent='Copiar'},1800)}
+  try{
+    navigator.clipboard.writeText(text).then(done,function(){selectEmail()});
+  }catch(e){selectEmail()}
+  function selectEmail(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selecionado'}
+});
+</script>
+
+</body>
+</html>
